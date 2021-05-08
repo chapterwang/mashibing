@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame{
     private int x=50,y=50;
+    Image offImage=null;
 
 
     public TankFrame(){
@@ -28,7 +29,20 @@ public class TankFrame extends Frame{
         g.fillOval(x,y,50,50);
         //g.fillRect(x,y,50,50);
 
-        y+=10;
+        y+=5;
+    }
+
+    public void update(Graphics g){
+        if(offImage==null){
+            offImage=this.createImage(800,600);
+        }
+        Graphics goffImage=offImage.getGraphics();
+        //Color c=goffImage.getColor();
+        //goffImage.setColor(Color.green);
+        goffImage.fillRect(0,0,800,600);
+        goffImage.setColor(Color.green);
+        print(goffImage);
+        g.drawImage(offImage,0,0,null);
     }
 
     public class paintThread implements Runnable{
@@ -37,7 +51,7 @@ public class TankFrame extends Frame{
             while (true){
                 repaint();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(200);
                 }
                 catch (InterruptedException e){
                     e.printStackTrace();
