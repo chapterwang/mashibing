@@ -1,4 +1,4 @@
-package day3.proxy;
+package day3.staticproxy;
 
 /**、
  * @author: bing
